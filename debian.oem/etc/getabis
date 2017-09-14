@@ -1,5 +1,5 @@
 repo_list=(
-	"http://ppa.launchpad.net/canonical-hwe-team/ppa/ubuntu/pool/main/"
+	"http://ppa.launchpad.net/canonical-hwe-team/ppa/ubuntu/pool/main/l/linux-oem"
 	"http://archive.ubuntu.com/ubuntu/pool/main/l/linux-oem"
 	"http://ports.ubuntu.com/ubuntu-ports/pool/main/l/linux-oem"
 	"http://archive.ubuntu.com/ubuntu/pool/universe/l/linux-oem"
