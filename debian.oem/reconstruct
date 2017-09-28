@@ -6,6 +6,9 @@
 [ ! -L 'ubuntu/vbox/vboxvideo/include' ] && ln -sf '../include' 'ubuntu/vbox/vboxvideo/include'
 [ ! -L 'ubuntu/vbox/vboxvideo/r0drv' ] && ln -sf '../r0drv' 'ubuntu/vbox/vboxvideo/r0drv'
 # Remove any files deleted from the orig.
+rm -f 'arch/arm/mach-omap2/drm.c'
+rm -f 'drivers/gpu/drm/omapdrm/dss/dss_features.c'
+rm -f 'drivers/gpu/drm/omapdrm/dss/dss_features.h'
 rm -f 'firmware/acenic/tg1.bin.ihex'
 rm -f 'firmware/acenic/tg2.bin.ihex'
 rm -f 'firmware/adaptec/starfire_rx.bin.ihex'
@@ -119,4 +122,5 @@ rm -f 'firmware/yam/9600.bin.ihex'
 rm -f 'firmware/yamaha/ds1_ctrl.fw.ihex'
 rm -f 'firmware/yamaha/ds1_dsp.fw.ihex'
 rm -f 'firmware/yamaha/ds1e_ctrl.fw.ihex'
+rm -f 'include/linux/platform_data/omap_drm.h'
 exit 0
