@@ -8560,15 +8560,6 @@ EXPORT_SYMBOL vmlinux 0x00000000	intel_gtt_clear_range
 EXPORT_SYMBOL vmlinux 0x00000000	intel_gtt_get
 EXPORT_SYMBOL vmlinux 0x00000000	intel_gtt_insert_page
 EXPORT_SYMBOL vmlinux 0x00000000	intel_gtt_insert_sg_entries
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_dw_i2c_acquire_ownership
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_dw_i2c_release_ownership
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_msgbus_read32
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_msgbus_read32_raw
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_msgbus_read32_raw_ext
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_msgbus_write32
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_msgbus_write32_raw
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_msgbus_write32_raw_ext
-EXPORT_SYMBOL vmlinux 0x00000000	intel_mid_soc_stepping
 EXPORT_SYMBOL vmlinux 0x00000000	invalidate_bdev
 EXPORT_SYMBOL vmlinux 0x00000000	invalidate_inode_buffers
 EXPORT_SYMBOL vmlinux 0x00000000	invalidate_mapping_pages
@@ -11105,6 +11096,7 @@ EXPORT_SYMBOL vmlinux 0x00000000	vm_brk_flags
 EXPORT_SYMBOL vmlinux 0x00000000	vm_event_states
 EXPORT_SYMBOL vmlinux 0x00000000	vm_get_page_prot
 EXPORT_SYMBOL vmlinux 0x00000000	vm_insert_mixed
+EXPORT_SYMBOL vmlinux 0x00000000	vm_insert_mixed_mkwrite
 EXPORT_SYMBOL vmlinux 0x00000000	vm_insert_page
 EXPORT_SYMBOL vmlinux 0x00000000	vm_insert_pfn
 EXPORT_SYMBOL vmlinux 0x00000000	vm_insert_pfn_prot
@@ -11761,6 +11753,7 @@ EXPORT_SYMBOL_GPL drivers/ata/libahci_platform 0x00000000	ahci_platform_resume_h
 EXPORT_SYMBOL_GPL drivers/ata/libahci_platform 0x00000000	ahci_platform_suspend
 EXPORT_SYMBOL_GPL drivers/ata/libahci_platform 0x00000000	ahci_platform_suspend_host
 EXPORT_SYMBOL_GPL drivers/ata/pata_platform 0x00000000	__pata_platform_probe
+EXPORT_SYMBOL_GPL drivers/ata/pata_sis 0x00000000	sis_info133_for_sata
 EXPORT_SYMBOL_GPL drivers/auxdisplay/cfag12864b 0x00000000	cfag12864b_buffer
 EXPORT_SYMBOL_GPL drivers/auxdisplay/cfag12864b 0x00000000	cfag12864b_disable
 EXPORT_SYMBOL_GPL drivers/auxdisplay/cfag12864b 0x00000000	cfag12864b_enable
@@ -14858,9 +14851,6 @@ EXPORT_SYMBOL_GPL drivers/staging/lustre/lustre/obdclass/obdclass 0x00000000	lpr
 EXPORT_SYMBOL_GPL drivers/staging/lustre/lustre/obdclass/obdclass 0x00000000	lprocfs_obd_setup
 EXPORT_SYMBOL_GPL drivers/staging/lustre/lustre/obdclass/obdclass 0x00000000	lustre_kobj
 EXPORT_SYMBOL_GPL drivers/staging/lustre/lustre/obdclass/obdclass 0x00000000	lustre_sysfs_ops
-EXPORT_SYMBOL_GPL drivers/staging/media/atomisp/i2c/libmsrlisthelper 0x00000000	apply_msr_data
-EXPORT_SYMBOL_GPL drivers/staging/media/atomisp/i2c/libmsrlisthelper 0x00000000	load_msr_list
-EXPORT_SYMBOL_GPL drivers/staging/media/atomisp/i2c/libmsrlisthelper 0x00000000	release_msr_list
 EXPORT_SYMBOL_GPL drivers/staging/most/mostcore/mostcore 0x00000000	channel_has_mbo
 EXPORT_SYMBOL_GPL drivers/staging/most/mostcore/mostcore 0x00000000	most_deregister_aim
 EXPORT_SYMBOL_GPL drivers/staging/most/mostcore/mostcore 0x00000000	most_deregister_interface
@@ -15569,7 +15559,6 @@ EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_path
 EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_permission
 EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_pgheader_init
 EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_pgio_current_mirror
-EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_pgio_data_destroy
 EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_pgio_header_alloc
 EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_pgio_header_free
 EXPORT_SYMBOL_GPL fs/nfs/nfs 0x00000000	nfs_post_op_update_inode
@@ -18156,12 +18145,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	atapi_cmd_type
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomic_notifier_call_chain
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomic_notifier_chain_register
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomic_notifier_chain_unregister
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomisp_get_default_camera_caps
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomisp_get_platform_data
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomisp_gmin_find_subdev
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomisp_gmin_register_vcm_control
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomisp_gmin_remove_subdev
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	atomisp_register_i2c_module
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	attribute_container_classdev_to_container
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	attribute_container_find_class_device
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	attribute_container_register
@@ -18350,8 +18333,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	call_rcu_sched
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	call_rcu_tasks
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	call_srcu
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	call_switchdev_notifiers
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	camera_get_af_platform_data
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	camera_sensor_csi
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	cancel_work_sync
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	cap_mmap_addr
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	cap_mmap_file
@@ -18746,7 +18727,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_get_private
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_inode
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_iomap_fault
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_iomap_rw
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_pfn_mkwrite
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_read_lock
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_read_unlock
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	dax_write_cache
@@ -19218,6 +19198,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	eventfd_ctx_remove_wait_queue
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	eventfd_fget
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	eventfd_signal
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	events_sysfs_show
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	evict_inodes
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	evm_inode_init_security
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	evm_set_key
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	evm_verifyxattr
@@ -19434,12 +19415,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	get_timespec64
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	get_user_pages_fast
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	get_xsave_addr
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	getboottime64
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	ghes_edac_register
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	ghes_edac_report_mem_error
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	ghes_edac_unregister
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	gmin_camera_platform_data
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	gmin_get_config_var
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	gmin_get_var_int
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gnttab_alloc_grant_references
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gnttab_batch_copy
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gnttab_batch_map
@@ -19607,9 +19582,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_adapter_type
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_add_numbered_adapter
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_bus_type
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_client_type
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_detect_slave_mode
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_dw_probe
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_dw_probe_slave
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_dw_read_comp_param
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_for_each_dev
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_generic_gpio_recovery
@@ -19623,8 +19596,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_new_secondary_device
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_parse_fw_timings
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_probe_func_quick_read
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_recover_bus
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_slave_register
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_slave_unregister
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	i2c_unregister_device
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	ibft_addr
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	idr_alloc
@@ -21321,7 +21292,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	simple_attr_release
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	simple_attr_write
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	single_open_net
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	single_release_net
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	sis_info133_for_sata
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	sk_attach_filter
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	sk_clear_memalloc
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	sk_clone_lock
@@ -22005,10 +21975,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	visitor128
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	visitor32
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	visitor64
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	visitorl
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	vlv2_plat_configure_clock
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	vlv2_plat_get_clock_freq
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	vlv2_plat_get_clock_status
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	vlv2_plat_set_clock_freq
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	vm_memory_committed
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	vm_unmap_aliases
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	vma_kernel_pagesize

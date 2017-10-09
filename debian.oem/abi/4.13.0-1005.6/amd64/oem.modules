@@ -417,6 +417,7 @@ au0828
 au8522_common
 au8522_decoder
 au8522_dig
+aufs
 auo-pixcir-ts
 auo_k1900fb
 auo_k1901fb
@@ -3078,6 +3079,7 @@ pata_rz1000
 pata_sch
 pata_serverworks
 pata_sil680
+pata_sis
 pata_sl82c105
 pata_triflex
 pata_via
@@ -3161,6 +3163,7 @@ phy-tusb1210
 physmap
 pinctrl-broxton
 pinctrl-cannonlake
+pinctrl-denverton
 pinctrl-geminilake
 pinctrl-intel
 pinctrl-mcp23s08
