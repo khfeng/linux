@@ -4,6 +4,17 @@ linux-oem (4.13.0-1007.8) UNRELEASED; urgency=low
   CHANGELOG: Use the printchanges target to see the curent changes.
   CHANGELOG: Use the insertchanges target to create the final log.
 
+  [ Ubuntu: 4.13.0-16.19 ]
+
+  * 20170817 - ISO hangs on boot on qemu with splash screen enabled and qxl
+    graphics driver (LP: #1711358)
+    - qxl: fix framebuffer unpinning
+  * [Bug] USB controller failed to respond on Denverton after loading
+    intel_th_pci module (LP: #1715833)
+    - SAUCE: PCI: Disable broken RTIT_BAR of Intel TH
+  * CVE-2017-5123
+    - waitid(): Add missing access_ok() checks
+
  -- Timo Aaltonen <timo.aaltonen@canonical.com>  Fri, 13 Oct 2017 09:25:51 +0300
 
 linux-oem (4.13.0-1006.7) xenial; urgency=low
