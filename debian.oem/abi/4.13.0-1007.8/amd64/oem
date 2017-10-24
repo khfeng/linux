@@ -128,6 +128,7 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	__drm_mm_interval_first
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	__drm_printfn_debug
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	__drm_printfn_info
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	__drm_printfn_seq_file
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_accurate_vblank_count
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_add_edid_modes
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_add_modes_noedid
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_agp_acquire
@@ -147,15 +148,16 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_add_affected_planes
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_check_only
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_clean_old_fb
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_commit
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_connector_set_property
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_crtc_set_property
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_get_connector_state
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_get_crtc_state
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_get_plane_state
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_get_private_obj_state
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_legacy_backoff
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_nonblocking_commit
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_normalize_zpos
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_private_obj_fini
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_private_obj_init
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_plane_set_property
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_set_crtc_for_connector
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_set_crtc_for_plane
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_atomic_set_fb_for_plane
@@ -193,7 +195,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_connector_list_iter_end
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_connector_list_iter_next
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_connector_register
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_connector_unregister
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_crtc_accurate_vblank_count
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_crtc_arm_vblank_event
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_crtc_check_viewport
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_crtc_cleanup
@@ -227,7 +228,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_printk
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_ref
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_register
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_set_unique
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_unplug
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_unref
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_dev_unregister
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_display_info_set_bus_formats
@@ -340,8 +340,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_ioremap
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_ioremap_wc
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_ioremapfree
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_mmap
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_pci_exit
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_pci_init
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_rmmap
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_legacy_rmmap_locked
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_master_get
@@ -387,9 +385,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_find_dmt
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_get_hv_timing
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_get_tile_group
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_hsync
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_is_420
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_is_420_also
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_is_420_only
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_legacy_fb_format
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_object_find
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_object_get
@@ -405,7 +400,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_set_name
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_sort
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_validate_basic
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_validate_size
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_validate_ycbcr420
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_mode_vrefresh
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_modeset_acquire_fini
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_modeset_acquire_init
@@ -430,7 +424,10 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_panel_detach
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_panel_init
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_panel_remove
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pci_alloc
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pci_exit
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pci_free
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pci_init
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pci_set_busid
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pcie_get_max_link_width
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_pcie_get_speed_cap_mask
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_plane_cleanup
@@ -460,7 +457,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_property_create_range
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_property_create_signed_range
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_property_destroy
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_property_lookup_blob
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_property_replace_blob
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_property_replace_global_blob
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_put_dev
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_read
@@ -480,14 +476,14 @@ EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_send_event
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_send_event_locked
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_set_preferred_mode
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_state_dump
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_add_callback
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_fence_get
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_find
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_find_fence
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_free
-EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_remove_callback
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_syncobj_replace_fence
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_sysfs_hotplug_event
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_universal_plane_init
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_unplug_dev
+EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_vblank_cleanup
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_vblank_init
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_vma_node_allow
 EXPORT_SYMBOL drivers/gpu/drm/drm 0x00000000	drm_vma_node_is_allowed
@@ -506,11 +502,7 @@ EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	__drm_atomic_helper_crtc
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	__drm_atomic_helper_crtc_duplicate_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	__drm_atomic_helper_plane_destroy_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	__drm_atomic_helper_plane_duplicate_state
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	__drm_atomic_helper_private_obj_duplicate_state
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	devm_drm_panel_bridge_add
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_get_mst_topology_state
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_async_check
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_async_commit
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_best_encoder
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_check
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_check_modeset
@@ -525,13 +517,15 @@ EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_commit
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_commit_planes
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_commit_planes_on_crtc
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_commit_tail
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_commit_tail_rpm
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_connector_destroy_state
+EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_connector_dpms
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_connector_duplicate_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_connector_reset
+EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_connector_set_property
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_crtc_destroy_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_crtc_duplicate_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_crtc_reset
+EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_crtc_set_property
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_disable_all
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_disable_plane
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_disable_planes_on_crtc
@@ -542,6 +536,7 @@ EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_page_f
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_plane_destroy_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_plane_duplicate_state
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_plane_reset
+EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_plane_set_property
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_prepare_planes
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_resume
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_set_config
@@ -553,7 +548,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_update
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_update_plane
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_wait_for_dependencies
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_wait_for_fences
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_wait_for_flip_done
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_atomic_helper_wait_for_vblanks
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_crtc_helper_set_config
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_crtc_helper_set_mode
@@ -650,9 +644,6 @@ EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fb_helper_unlink_fbi
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fb_helper_unregister_fbi
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fbdev_cma_set_suspend
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fbdev_cma_set_suspend_unlocked
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fb_create_handle
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fb_destroy
-EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fbdev_fb_create
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_has_preferred_mode
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_helper_connector_dpms
 EXPORT_SYMBOL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_helper_crtc_in_use
@@ -711,7 +702,6 @@ EXPORT_SYMBOL drivers/gpu/drm/tinydrm/core/tinydrm 0x00000000	tinydrm_spi_max_tr
 EXPORT_SYMBOL drivers/gpu/drm/tinydrm/core/tinydrm 0x00000000	tinydrm_spi_transfer
 EXPORT_SYMBOL drivers/gpu/drm/tinydrm/core/tinydrm 0x00000000	tinydrm_suspend
 EXPORT_SYMBOL drivers/gpu/drm/tinydrm/core/tinydrm 0x00000000	tinydrm_swab16
-EXPORT_SYMBOL drivers/gpu/drm/tinydrm/core/tinydrm 0x00000000	tinydrm_xrgb8888_to_gray8
 EXPORT_SYMBOL drivers/gpu/drm/tinydrm/core/tinydrm 0x00000000	tinydrm_xrgb8888_to_rgb565
 EXPORT_SYMBOL drivers/gpu/drm/tinydrm/mipi-dbi 0x00000000	mipi_dbi_command_buf
 EXPORT_SYMBOL drivers/gpu/drm/tinydrm/mipi-dbi 0x00000000	mipi_dbi_command_read
@@ -6670,7 +6660,6 @@ EXPORT_SYMBOL vmlinux 0x00000000	__serio_register_port
 EXPORT_SYMBOL vmlinux 0x00000000	__set_page_dirty_buffers
 EXPORT_SYMBOL vmlinux 0x00000000	__set_page_dirty_nobuffers
 EXPORT_SYMBOL vmlinux 0x00000000	__sg_alloc_table
-EXPORT_SYMBOL vmlinux 0x00000000	__sg_alloc_table_from_pages
 EXPORT_SYMBOL vmlinux 0x00000000	__sg_free_table
 EXPORT_SYMBOL vmlinux 0x00000000	__sg_page_iter_next
 EXPORT_SYMBOL vmlinux 0x00000000	__sg_page_iter_start
@@ -9940,7 +9929,6 @@ EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_gang_lookup
 EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_gang_lookup_slot
 EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_gang_lookup_tag
 EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_gang_lookup_tag_slot
-EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_iter_delete
 EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_iter_resume
 EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_lookup
 EXPORT_SYMBOL vmlinux 0x00000000	radix_tree_lookup_slot
@@ -10056,7 +10044,6 @@ EXPORT_SYMBOL vmlinux 0x00000000	request_resource
 EXPORT_SYMBOL vmlinux 0x00000000	request_threaded_irq
 EXPORT_SYMBOL vmlinux 0x00000000	reservation_object_add_excl_fence
 EXPORT_SYMBOL vmlinux 0x00000000	reservation_object_add_shared_fence
-EXPORT_SYMBOL vmlinux 0x00000000	reservation_object_copy_fences
 EXPORT_SYMBOL vmlinux 0x00000000	reservation_object_reserve_shared
 EXPORT_SYMBOL vmlinux 0x00000000	reservation_seqcount_class
 EXPORT_SYMBOL vmlinux 0x00000000	reservation_seqcount_string
@@ -11950,6 +11937,7 @@ EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_create
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_describe
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_dumb_create
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_dumb_create_internal
+EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_dumb_map_offset
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_free_object
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_mmap
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_prime_get_sg_table
@@ -11958,7 +11946,6 @@ EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_prime_mmap
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_prime_vmap
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_prime_vunmap
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_cma_vm_ops
-EXPORT_SYMBOL_GPL drivers/gpu/drm/drm 0x00000000	drm_gem_dumb_map_offset
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fb_cma_create
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fb_cma_create_with_funcs
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fb_cma_debugfs_show
@@ -11970,10 +11957,6 @@ EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fbdev_cma_hotplu
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fbdev_cma_init
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fbdev_cma_init_with_funcs
 EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_fbdev_cma_restore_mode
-EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fb_create
-EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fb_create_with_funcs
-EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fb_get_obj
-EXPORT_SYMBOL_GPL drivers/gpu/drm/drm_kms_helper 0x00000000	drm_gem_fb_prepare_fb
 EXPORT_SYMBOL_GPL drivers/gpu/drm/i915/gvt/kvmgt 0x00000000	kvmgt_mpt
 EXPORT_SYMBOL_GPL drivers/gpu/drm/i915/i915 0x00000000	i915_gpu_busy
 EXPORT_SYMBOL_GPL drivers/gpu/drm/i915/i915 0x00000000	i915_gpu_lower

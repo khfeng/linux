@@ -124,7 +124,6 @@ firmware:       amdgpu/topaz_rlc.bin
 firmware:       amdgpu/topaz_sdma.bin
 firmware:       amdgpu/topaz_sdma1.bin
 firmware:       amdgpu/topaz_smc.bin
-firmware:       amdgpu/vega10_acg_smc.bin
 firmware:       amdgpu/vega10_asd.bin
 firmware:       amdgpu/vega10_ce.bin
 firmware:       amdgpu/vega10_gpu_info.bin
