@@ -349,6 +349,7 @@ struct aq_nic_s *aq_nic_alloc_hot(struct net_device *ndev)
 	}
 	if (netif_running(ndev))
 		netif_tx_disable(ndev);
+	netif_carrier_off(self->ndev);
 
 	for (self->aq_vecs = 0; self->aq_vecs < self->aq_nic_cfg.vecs;
 		self->aq_vecs++) {
@@ -916,6 +917,7 @@ int aq_nic_stop(struct aq_nic_s *self)
 	unsigned int i = 0U;
 
 	netif_tx_disable(self->ndev);
+	netif_carrier_off(self->ndev);
 
 	del_timer_sync(&self->service_timer);
 
