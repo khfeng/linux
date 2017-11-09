@@ -347,6 +347,7 @@ MODULE_DEVICE_TABLE(pci, rtl8169_pci_tbl);
 
 static int rx_buf_sz = 16383;
 static int aldps = -1;
+static int aspm = -1;
 static int use_dac = -1;
 static struct {
 	u32 msg_enable;
@@ -517,6 +518,7 @@ enum rtl8168_registers {
 #define PWM_EN				(1 << 22)
 #define RXDV_GATED_EN			(1 << 19)
 #define EARLY_TALLY_EN			(1 << 16)
+#define FORCE_CLK			(1 << 15) /* force clock request */
 };
 
 enum rtl_register_content {
@@ -742,6 +744,7 @@ enum features {
 	RTL_FEATURE_GMII	= (1 << 2),
 	RTL_FEATURE_FW_LOADED	= (1 << 3),
 	RTL_FEATURE_ALDPS	= (1 << 4),
+	RTL_FEATURE_ASPM	= (1 << 5),
 };
 
 struct rtl8169_counters {
@@ -872,6 +875,8 @@ MODULE_AUTHOR("Realtek and the Linux r8169 crew <netdev@vger.kernel.org>");
 MODULE_DESCRIPTION("RealTek RTL-8169 Gigabit Ethernet driver");
 module_param(aldps, int, 0);
 MODULE_PARM_DESC(aldps, "Enable ALDPS (-1 = auto [default], 0 = disable, 1 = enable)");
+module_param(aspm, int, 0);
+MODULE_PARM_DESC(aspm, "Enable ASPM (-1 = auto [default], 0 = disable, 1 = enable)");
 module_param(use_dac, int, 0);
 MODULE_PARM_DESC(use_dac, "Enable PCI DAC. Unsafe on 32 bit PCI slot.");
 module_param_named(debug, debug.msg_enable, int, 0);
@@ -6220,7 +6225,8 @@ static void rtl_hw_start_8168e_2(struct rtl8169_private *tp)
 
 	RTL_W8(MaxTxPacketSize, EarlySize);
 
-	rtl_disable_clock_request(pdev);
+	if (!(tp->features & RTL_FEATURE_ASPM))
+		rtl_disable_clock_request(pdev);
 
 	RTL_W32(TxConfig, RTL_R32(TxConfig) | TXCFG_AUTO_FIFO);
 	RTL_W8(MCU, RTL_R8(MCU) & ~NOW_IS_OOB);
@@ -6230,7 +6236,12 @@ static void rtl_hw_start_8168e_2(struct rtl8169_private *tp)
 
 	RTL_W8(DLLPR, RTL_R8(DLLPR) | PFM_EN);
 	RTL_W32(MISC, RTL_R32(MISC) | PWM_EN);
-	RTL_W8(Config5, RTL_R8(Config5) & ~Spi_en);
+
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W8(Config5, (RTL_R8(Config5) & ~Spi_en) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+	} else
+		RTL_W8(Config5, RTL_R8(Config5) & ~Spi_en);
 }
 
 static void rtl_hw_start_8168f(struct rtl8169_private *tp)
@@ -6255,13 +6266,20 @@ static void rtl_hw_start_8168f(struct rtl8169_private *tp)
 
 	RTL_W8(MaxTxPacketSize, EarlySize);
 
-	rtl_disable_clock_request(pdev);
+	if (!(tp->features & RTL_FEATURE_ASPM))
+		rtl_disable_clock_request(pdev);
 
 	RTL_W32(TxConfig, RTL_R32(TxConfig) | TXCFG_AUTO_FIFO);
 	RTL_W8(MCU, RTL_R8(MCU) & ~NOW_IS_OOB);
 	RTL_W8(DLLPR, RTL_R8(DLLPR) | PFM_EN);
-	RTL_W32(MISC, RTL_R32(MISC) | PWM_EN);
-	RTL_W8(Config5, RTL_R8(Config5) & ~Spi_en);
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W32(MISC, RTL_R32(MISC) | PWM_EN | FORCE_CLK);
+		RTL_W8(Config5, (RTL_R8(Config5) & ~Spi_en) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+	} else {
+		RTL_W32(MISC, RTL_R32(MISC) | PWM_EN);
+		RTL_W8(Config5, RTL_R8(Config5) & ~Spi_en);
+	}
 }
 
 static void rtl_hw_start_8168f_1(struct rtl8169_private *tp)
@@ -6321,8 +6339,15 @@ static void rtl_hw_start_8168g(struct rtl8169_private *tp)
 	rtl_w0w1_eri(tp, 0xdc, ERIAR_MASK_0001, 0x01, 0x00, ERIAR_EXGMAC);
 	rtl_eri_write(tp, 0x2f8, ERIAR_MASK_0011, 0x1d8f, ERIAR_EXGMAC);
 
-	RTL_W32(MISC, RTL_R32(MISC) & ~RXDV_GATED_EN);
+	if (tp->features & RTL_FEATURE_ASPM)
+		RTL_W32(MISC, (RTL_R32(MISC) | FORCE_CLK) & ~RXDV_GATED_EN);
+	else
+		RTL_W32(MISC, RTL_R32(MISC) & ~RXDV_GATED_EN);
 	RTL_W8(MaxTxPacketSize, EarlySize);
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W8(Config5, RTL_R8(Config5) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+	}
 
 	rtl_eri_write(tp, 0xc0, ERIAR_MASK_0011, 0x0000, ERIAR_EXGMAC);
 	rtl_eri_write(tp, 0xb8, ERIAR_MASK_0011, 0x0000, ERIAR_EXGMAC);
@@ -6431,8 +6456,15 @@ static void rtl_hw_start_8168h_1(struct rtl8169_private *tp)
 
 	rtl_eri_write(tp, 0x5f0, ERIAR_MASK_0011, 0x4f87, ERIAR_EXGMAC);
 
-	RTL_W32(MISC, RTL_R32(MISC) & ~RXDV_GATED_EN);
+	if (tp->features & RTL_FEATURE_ASPM)
+		RTL_W32(MISC, (RTL_R32(MISC) | FORCE_CLK) & ~RXDV_GATED_EN);
+	else
+		RTL_W32(MISC, RTL_R32(MISC) & ~RXDV_GATED_EN);
 	RTL_W8(MaxTxPacketSize, EarlySize);
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W8(Config5, RTL_R8(Config5) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+	}
 
 	rtl_eri_write(tp, 0xc0, ERIAR_MASK_0011, 0x0000, ERIAR_EXGMAC);
 	rtl_eri_write(tp, 0xb8, ERIAR_MASK_0011, 0x0000, ERIAR_EXGMAC);
@@ -6832,6 +6864,11 @@ static void rtl_hw_start_8105e_1(struct rtl8169_private *tp)
 
 	RTL_W8(MCU, RTL_R8(MCU) | EN_NDP | EN_OOB_RESET);
 	RTL_W8(DLLPR, RTL_R8(DLLPR) | PFM_EN);
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W8(Config5, RTL_R8(Config5) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+		RTL_W32(MISC, RTL_R32(MISC) | FORCE_CLK);
+	}
 
 	rtl_ephy_init(tp, e_info_8105e_1, ARRAY_SIZE(e_info_8105e_1));
 
@@ -6859,6 +6896,11 @@ static void rtl_hw_start_8402(struct rtl8169_private *tp)
 
 	RTL_W32(TxConfig, RTL_R32(TxConfig) | TXCFG_AUTO_FIFO);
 	RTL_W8(MCU, RTL_R8(MCU) & ~NOW_IS_OOB);
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W8(Config5, RTL_R8(Config5) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+		RTL_W32(MISC, RTL_R32(MISC) | FORCE_CLK);
+	}
 
 	rtl_ephy_init(tp, e_info_8402, ARRAY_SIZE(e_info_8402));
 
@@ -6882,9 +6924,15 @@ static void rtl_hw_start_8106(struct rtl8169_private *tp)
 	/* Force LAN exit from ASPM if Rx/Tx are not idle */
 	RTL_W32(FuncEvent, RTL_R32(FuncEvent) | 0x002800);
 
-	RTL_W32(MISC, (RTL_R32(MISC) | DISABLE_LAN_EN) & ~EARLY_TALLY_EN);
-	RTL_W8(MCU, RTL_R8(MCU) | EN_NDP | EN_OOB_RESET);
-	RTL_W8(DLLPR, RTL_R8(DLLPR) & ~PFM_EN);
+	if (tp->features & RTL_FEATURE_ASPM) {
+		RTL_W32(MISC,
+			(RTL_R32(MISC) | DISABLE_LAN_EN | FORCE_CLK) & ~EARLY_TALLY_EN);
+		RTL_W8(Config5, RTL_R8(Config5) | ASPM_en);
+		RTL_W8(Config2, RTL_R8(Config2) | ClkReqEn);
+		RTL_W8(MCU, RTL_R8(MCU) | EN_NDP | EN_OOB_RESET);
+		RTL_W8(DLLPR, RTL_R8(DLLPR) & ~PFM_EN);
+	} else
+		RTL_W32(MISC, (RTL_R32(MISC) | DISABLE_LAN_EN) & ~EARLY_TALLY_EN);
 
 	rtl_pcie_state_l2l3_enable(tp, false);
 }
@@ -8491,6 +8539,26 @@ static void rtl_enable_aldps(struct rtl8169_private *tp)
 	}
 }
 
+static void rtl_enable_aspm(struct rtl8169_private *tp)
+{
+	if (aspm == 0)
+		return;
+	else if (aspm == 1) {
+		tp->features |= RTL_FEATURE_ASPM;
+		return;
+	}
+
+	switch (tp->mac_version) {
+	case RTL_GIGA_MAC_VER_39:
+	case RTL_GIGA_MAC_VER_42:
+	case RTL_GIGA_MAC_VER_46:
+		tp->features |= RTL_FEATURE_ASPM;
+		break;
+	default:
+		break;
+	}
+}
+
 static int rtl_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 	const struct rtl_cfg_info *cfg = rtl_cfg_infos + ent->driver_data;
@@ -8582,6 +8650,7 @@ static int rtl_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 	rtl8169_get_mac_version(tp, dev, cfg->default_ver);
 
 	rtl_enable_aldps(tp);
+	rtl_enable_aspm(tp);
 
 	tp->cp_cmd = 0;
 
