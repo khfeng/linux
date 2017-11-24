@@ -77,9 +77,9 @@
 #define IWL_A000_HR_CDB_FW_PRE	"iwlwifi-QuIcp-z0-hrcdb-a0-"
 
 #define IWL_A000_HR_MODULE_FIRMWARE(api) \
-	IWL_A000_HR_FW_PRE "-" __stringify(api) ".ucode"
+	IWL_A000_HR_FW_PRE __stringify(api) ".ucode"
 #define IWL_A000_JF_MODULE_FIRMWARE(api) \
-	IWL_A000_JF_FW_PRE "-" __stringify(api) ".ucode"
+	IWL_A000_JF_FW_PRE __stringify(api) ".ucode"
 
 #define NVM_HW_SECTION_NUM_FAMILY_A000		10
 
