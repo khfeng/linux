@@ -72,7 +72,7 @@
 #include "iwl-csr.h"
 #include "fw-dbg.h"
 #include "mvm.h"
-#include "fw-api-rs.h"
+#include "fw/api/rs.h"
 
 /*
  * Will return 0 even if the cmd failed when RFKILL is asserted unless
