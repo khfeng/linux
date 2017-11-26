@@ -1343,7 +1343,6 @@ gb-spilib
 gb-uart
 gb-usb
 gb-vibrator
-gcm
 gdmtty
 gdmulte
 gdth
@@ -1357,7 +1356,6 @@ genwqe_card
 gf2k
 gfs2
 ghash-clmulni-intel
-ghash-generic
 gigaset
 girbil-sir
 gl518sm
@@ -3079,7 +3077,6 @@ pata_rz1000
 pata_sch
 pata_serverworks
 pata_sil680
-pata_sis
 pata_sl82c105
 pata_triflex
 pata_via

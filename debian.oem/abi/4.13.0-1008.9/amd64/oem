@@ -9004,6 +9004,7 @@ EXPORT_SYMBOL vmlinux 0x00000000	md_done_sync
 EXPORT_SYMBOL vmlinux 0x00000000	md_error
 EXPORT_SYMBOL vmlinux 0x00000000	md_finish_reshape
 EXPORT_SYMBOL vmlinux 0x00000000	md_flush_request
+EXPORT_SYMBOL vmlinux 0x00000000	md_handle_request
 EXPORT_SYMBOL vmlinux 0x00000000	md_integrity_add_rdev
 EXPORT_SYMBOL vmlinux 0x00000000	md_integrity_register
 EXPORT_SYMBOL vmlinux 0x00000000	md_reap_sync_thread
@@ -11741,7 +11742,6 @@ EXPORT_SYMBOL_GPL drivers/ata/libahci_platform 0x00000000	ahci_platform_resume_h
 EXPORT_SYMBOL_GPL drivers/ata/libahci_platform 0x00000000	ahci_platform_suspend
 EXPORT_SYMBOL_GPL drivers/ata/libahci_platform 0x00000000	ahci_platform_suspend_host
 EXPORT_SYMBOL_GPL drivers/ata/pata_platform 0x00000000	__pata_platform_probe
-EXPORT_SYMBOL_GPL drivers/ata/pata_sis 0x00000000	sis_info133_for_sata
 EXPORT_SYMBOL_GPL drivers/auxdisplay/cfag12864b 0x00000000	cfag12864b_buffer
 EXPORT_SYMBOL_GPL drivers/auxdisplay/cfag12864b 0x00000000	cfag12864b_disable
 EXPORT_SYMBOL_GPL drivers/auxdisplay/cfag12864b 0x00000000	cfag12864b_enable
@@ -12136,6 +12136,7 @@ EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_calibrate_all
 EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_cleanup_buffer_and_trigger
 EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_init
 EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_read_reg
+EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_reset
 EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_set_comm
 EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_setup_buffer_and_trigger
 EXPORT_SYMBOL_GPL drivers/iio/adc/ad_sigma_delta 0x00000000	ad_sd_validate_trigger
@@ -14992,7 +14993,6 @@ EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_
 EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_common_set_cdev
 EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_common_set_inquiry_string
 EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_common_set_num_buffers
-EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_common_set_ops
 EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_common_set_sysfs
 EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_config_from_params
 EXPORT_SYMBOL_GPL drivers/usb/gadget/function/usb_f_mass_storage 0x00000000	fsg_fs_bulk_in_desc
@@ -21276,6 +21276,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	simple_attr_release
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	simple_attr_write
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	single_open_net
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	single_release_net
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	sis_info133_for_sata
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	sk_attach_filter
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	sk_clear_memalloc
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	sk_clone_lock
