@@ -13809,9 +13809,12 @@ EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_abor
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_clear_bits_prph
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_cmd_groups_verify_sorted
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_force_nmi
+EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_free_fw_paging
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_get_bios_mcc
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_get_cmd_string
+EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_get_shared_mem_conf
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_init_notification_wait
+EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_init_paging
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_init_sbands
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_notification_wait
 EXPORT_SYMBOL_GPL drivers/net/wireless/intel/iwlwifi/iwlwifi 0x00000000	iwl_notification_wait_init
@@ -16765,6 +16768,7 @@ EXPORT_SYMBOL_GPL sound/ac97_bus 0x00000000	snd_ac97_reset
 EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_card_add_dev_attr
 EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_ctl_activate_id
 EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_ctl_add_vmaster_hook
+EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_ctl_apply_vmaster_slaves
 EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_ctl_get_preferred_subdevice
 EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_ctl_sync_vmaster
 EXPORT_SYMBOL_GPL sound/core/snd 0x00000000	snd_device_disconnect
