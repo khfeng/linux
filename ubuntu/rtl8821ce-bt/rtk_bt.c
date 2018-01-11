@@ -49,26 +49,9 @@ static bool reset = 0;
 static struct usb_driver btusb_driver;
 static struct usb_device_id btusb_table[] = {
 	{
-		.match_flags = USB_DEVICE_ID_MATCH_VENDOR |
-			USB_DEVICE_ID_MATCH_INT_INFO,
+		.match_flags = USB_DEVICE_ID_MATCH_VENDOR | USB_DEVICE_ID_MATCH_PRODUCT,
 		.idVendor = 0x0bda,
-		.bInterfaceClass = 0xe0,
-		.bInterfaceSubClass = 0x01,
-		.bInterfaceProtocol = 0x01
-	}, {
-		.match_flags = USB_DEVICE_ID_MATCH_VENDOR |
-			USB_DEVICE_ID_MATCH_INT_INFO,
-		.idVendor = 0x13d3,
-		.bInterfaceClass = 0xe0,
-		.bInterfaceSubClass = 0x01,
-		.bInterfaceProtocol = 0x01
-	}, {
-		.match_flags = USB_DEVICE_ID_MATCH_VENDOR |
-			USB_DEVICE_ID_MATCH_INT_INFO,
-		.idVendor = 0x0489,
-		.bInterfaceClass = 0xe0,
-		.bInterfaceSubClass = 0x01,
-		.bInterfaceProtocol = 0x01
+		.idProduct = 0xb00a,
 	}, { }
 };
 
