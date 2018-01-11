@@ -56,6 +56,14 @@ define build_zfs =
 	$(kmake) -C $(builddir)/build-$*/zfs/module $(conc_level)
 endef
 
+define build_rtl8821ce =
+	install -d $(builddir)/build-$*/rtl8821ce
+	rsync -a --delete ubuntu/rtl8821ce/ $(builddir)/build-$*/rtl8821ce/
+	cd $(builddir)/build-$*/rtl8821ce
+	ln -s rtl8821ce/rtl8821c.mk $(builddir)/build-$*/
+	$(kmake) -C $(builddir)/build-$* $(conc_level) $(rtl8821ce_opts) M=$(builddir)/build-$*/rtl8821ce modules
+endef
+
 # Do the actual build, including image and modules
 $(stampdir)/stamp-build-%: target_flavour = $*
 $(stampdir)/stamp-build-%: splopts  = --with-linux=$(CURDIR)
@@ -66,11 +74,13 @@ $(stampdir)/stamp-build-%: zfsopts += --with-spl-obj=$(builddir)/build-$*/spl
 $(stampdir)/stamp-build-%: zfsopts += --prefix=/usr --with-config=kernel
 $(stampdir)/stamp-build-%: bldimg = $(call custom_override,build_image,$*)
 $(stampdir)/stamp-build-%: enable_zfs = $(call custom_override,do_zfs,$*)
+$(stampdir)/stamp-build-%: rtl8821ce_opts = CONFIG_RTL8821CE=m
 $(stampdir)/stamp-build-%: $(stampdir)/stamp-prepare-%
 	@echo Debug: $@ build_image $(build_image) bldimg $(bldimg)
 	$(build_cd) $(kmake) $(build_O) $(conc_level) $(bldimg) modules $(if $(filter true,$(do_dtbs)),dtbs)
 
 	$(if $(filter true,$(enable_zfs)),$(call build_zfs))
+	$(if $(filter amd64,$(arch)),$(call build_rtl8821ce))
 
 	@touch $@
 
@@ -79,6 +89,11 @@ define install_zfs =
 		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(splopts)
 	cd $(builddir)/build-$*/zfs/module; \
 		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(zfsopts)
+endef
+
+define install_rtl8821ce =
+	cd $(builddir)/build-$*/rtl8821ce; \
+		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(rtl8821ce_opts)
 endef
 
 # Install the finished build
@@ -105,6 +120,8 @@ install-%: splopts += INSTALL_MOD_PATH=$(pkgdir)/
 install-%: splopts += INSTALL_MOD_DIR=kernel/zfs
 install-%: splopts += $(conc_level)
 install-%: zfsopts  = $(splopts)
+install-%: rtl8821ce_opts  = INSTALL_MOD_DIR=kernel/ubuntu/rtl8821ce
+install-%: rtl8821ce_opts += INSTALL_MOD_PATH=$(pkgdir)/
 install-%: checks-%
 	@echo Debug: $@ kernel_file $(kernel_file) kernfile $(kernfile) install_file $(install_file) instfile $(instfile)
 	dh_testdir
@@ -166,6 +183,7 @@ endif
 		INSTALL_FW_PATH=$(pkgdir)/lib/firmware/$(abi_release)-$*
 
 	$(if $(filter true,$(enable_zfs)),$(call install_zfs))
+	$(if $(filter amd64,$(arch)),$(call install_rtl8821ce))
 
 	#
 	# Build module blacklists:
