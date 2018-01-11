@@ -31,6 +31,12 @@ endif
 ##
 ##
 ##
+ifeq ($(ARCH),x86)
+obj-y				+= rtl8821ce-bt/
+endif
+##
+##
+##
 ##
 ##
 ##
