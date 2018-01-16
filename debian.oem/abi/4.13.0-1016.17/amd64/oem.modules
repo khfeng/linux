@@ -21,6 +21,7 @@
 842
 842_compress
 842_decompress
+8821ce
 88pm800
 88pm805
 88pm80x
@@ -3604,6 +3605,7 @@ rtc-x1205
 rtd520
 rti800
 rti802
+rtk_btusb
 rtl2830
 rtl2832
 rtl2832_sdr
