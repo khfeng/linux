@@ -64,6 +64,14 @@ define build_rtl8821ce =
 	$(kmake) -C $(builddir)/build-$* $(conc_level) $(rtl8821ce_opts) M=$(builddir)/build-$*/rtl8821ce modules
 endef
 
+define build_rtl8822be =
+	install -d $(builddir)/build-$*/rtl8822be
+	rsync -a --delete ubuntu/rtl8822be/ $(builddir)/build-$*/rtl8822be/
+	cd $(builddir)/build-$*/rtl8822be
+	ln -s rtl8822be/rtl8822b.mk $(builddir)/build-$*/
+	$(kmake) -C $(builddir)/build-$* $(conc_level) $(rtl8822be_opts) M=$(builddir)/build-$*/rtl8822be modules
+endef
+
 # Do the actual build, including image and modules
 $(stampdir)/stamp-build-%: target_flavour = $*
 $(stampdir)/stamp-build-%: splopts  = --with-linux=$(CURDIR)
@@ -75,12 +83,14 @@ $(stampdir)/stamp-build-%: zfsopts += --prefix=/usr --with-config=kernel
 $(stampdir)/stamp-build-%: bldimg = $(call custom_override,build_image,$*)
 $(stampdir)/stamp-build-%: enable_zfs = $(call custom_override,do_zfs,$*)
 $(stampdir)/stamp-build-%: rtl8821ce_opts = CONFIG_RTL8821CE=m
+$(stampdir)/stamp-build-%: rtl8822be_opts = CONFIG_RTL8822BE=m
 $(stampdir)/stamp-build-%: $(stampdir)/stamp-prepare-%
 	@echo Debug: $@ build_image $(build_image) bldimg $(bldimg)
 	$(build_cd) $(kmake) $(build_O) $(conc_level) $(bldimg) modules $(if $(filter true,$(do_dtbs)),dtbs)
 
 	$(if $(filter true,$(enable_zfs)),$(call build_zfs))
 	$(if $(filter amd64,$(arch)),$(call build_rtl8821ce))
+	$(if $(filter amd64,$(arch)),$(call build_rtl8822be))
 
 	@touch $@
 
@@ -94,6 +104,11 @@ endef
 define install_rtl8821ce =
 	cd $(builddir)/build-$*/rtl8821ce; \
 		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(rtl8821ce_opts)
+endef
+
+define install_rtl8822be =
+	cd $(builddir)/build-$*/rtl8822be; \
+		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(rtl8822be_opts)
 endef
 
 # Install the finished build
@@ -122,6 +137,8 @@ install-%: splopts += $(conc_level)
 install-%: zfsopts  = $(splopts)
 install-%: rtl8821ce_opts  = INSTALL_MOD_DIR=kernel/ubuntu/rtl8821ce
 install-%: rtl8821ce_opts += INSTALL_MOD_PATH=$(pkgdir)/
+install-%: rtl8822be_opts  = INSTALL_MOD_DIR=kernel/ubuntu/rtl8822be
+install-%: rtl8822be_opts += INSTALL_MOD_PATH=$(pkgdir)/
 install-%: checks-%
 	@echo Debug: $@ kernel_file $(kernel_file) kernfile $(kernfile) install_file $(install_file) instfile $(instfile)
 	dh_testdir
@@ -184,6 +201,7 @@ endif
 
 	$(if $(filter true,$(enable_zfs)),$(call install_zfs))
 	$(if $(filter amd64,$(arch)),$(call install_rtl8821ce))
+	$(if $(filter amd64,$(arch)),$(call install_rtl8822be))
 
 	#
 	# Build module blacklists:
