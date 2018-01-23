@@ -158,6 +158,7 @@ static void _init_mp_priv_(struct mp_priv *pmp_priv)
 #ifdef CONFIG_80211N_HT
 	pmp_priv->tx.attrib.ht_en = 1;
 #endif
+	pmp_priv->mpt_ctx.mpt_rate_index = 1;
 
 }
 
@@ -643,6 +644,41 @@ static void  PHY_SetRFPathSwitch(PADAPTER padapter , BOOLEAN bMain) {
 #endif
 	}
 }
+
+static void phy_switch_rf_path_set(PADAPTER padapter , u8 *prf_set_State) {
+
+	HAL_DATA_TYPE *pHalData = GET_HAL_DATA(padapter);
+	struct PHY_DM_STRUCT		*p_dm = &pHalData->odmpriv;
+
+#ifdef CONFIG_RTL8821C
+	if (IS_HARDWARE_TYPE_8821C(padapter)) {
+		config_phydm_set_ant_path(p_dm, *prf_set_State, p_dm->current_ant_num_8821c);
+		/* Do IQK when switching to BTG/WLG, requested by RF Binson */
+		if (prf_set_State == SWITCH_TO_BTG || prf_set_State == SWITCH_TO_WLG)
+			PHY_IQCalibrate(prf_set_State, FALSE);
+	}
+#endif
+
+}
+
+
+#ifdef CONFIG_ANTENNA_DIVERSITY
+u8 rtw_mp_set_antdiv(PADAPTER padapter, BOOLEAN bMain)
+{
+	HAL_DATA_TYPE *pHalData = GET_HAL_DATA(padapter);
+	u8 cur_ant, change_ant;
+
+	if (!pHalData->AntDivCfg)
+		return _FALSE;
+	/*rtw_hal_get_odm_var(padapter, HAL_ODM_ANTDIV_SELECT, &cur_ant, NULL);*/
+	change_ant = (bMain == MAIN_ANT) ? MAIN_ANT : AUX_ANT;
+
+	RTW_INFO("%s: config %s\n", __func__, (bMain == MAIN_ANT) ? "MAIN_ANT" : "AUX_ANT");
+	rtw_antenna_select_cmd(padapter, change_ant, _FALSE);
+
+	return _TRUE;
+}
+#endif
 
 s32
 MPT_InitializeAdapter(
@@ -1250,6 +1286,13 @@ void MP_PHY_SetRFPathSwitch(PADAPTER pAdapter , BOOLEAN bMain)
 {
 
 	PHY_SetRFPathSwitch(pAdapter, bMain);
+
+}
+
+void mp_phy_switch_rf_path_set(PADAPTER pAdapter , u8 *pstate)
+{
+
+	phy_switch_rf_path_set(pAdapter, pstate);
 
 }
 
