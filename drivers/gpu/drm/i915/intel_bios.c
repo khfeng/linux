@@ -480,7 +480,7 @@ parse_sdvo_device_mapping(struct drm_i915_private *dev_priv,
 	 * device size matches that of the *legacy* child device config
 	 * struct. Thus, SDVO mapping will be skipped for newer VBT.
 	 */
-	if (p_defs->child_dev_size != sizeof(struct old_child_dev_config)) {
+	if (p_defs->child_dev_size != LEGACY_CHILD_DEVICE_CONFIG_SIZE) {
 		DRM_DEBUG_KMS("Unsupported child device size for SDVO mapping.\n");
 		return;
 	}
@@ -1266,8 +1266,7 @@ parse_device_mapping(struct drm_i915_private *dev_priv,
 	} else if (bdb->version < 111) {
 		expected_size = 27;
 	} else if (bdb->version < 195) {
-		BUILD_BUG_ON(sizeof(struct old_child_dev_config) != 33);
-		expected_size = sizeof(struct old_child_dev_config);
+		expected_size = LEGACY_CHILD_DEVICE_CONFIG_SIZE;
 	} else if (bdb->version == 195) {
 		expected_size = 37;
 	} else if (bdb->version <= 197) {
@@ -1285,7 +1284,7 @@ parse_device_mapping(struct drm_i915_private *dev_priv,
 			  p_defs->child_dev_size, expected_size, bdb->version);
 
 	/* The legacy sized child device config is the minimum we need. */
-	if (p_defs->child_dev_size < sizeof(struct old_child_dev_config)) {
+	if (p_defs->child_dev_size < LEGACY_CHILD_DEVICE_CONFIG_SIZE) {
 		DRM_DEBUG_KMS("Child device config size %u is too small.\n",
 			      p_defs->child_dev_size);
 		return;
