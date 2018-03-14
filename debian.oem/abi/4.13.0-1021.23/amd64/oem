@@ -6743,6 +6743,21 @@ EXPORT_SYMBOL vmlinux 0x00000000	__wait_on_bit_lock
 EXPORT_SYMBOL vmlinux 0x00000000	__wait_on_buffer
 EXPORT_SYMBOL vmlinux 0x00000000	__wake_up
 EXPORT_SYMBOL vmlinux 0x00000000	__wake_up_bit
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r10
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r11
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r12
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r13
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r14
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r15
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r8
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_r9
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rax
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rbp
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rbx
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rcx
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rdi
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rdx
+EXPORT_SYMBOL vmlinux 0x00000000	__x86_indirect_thunk_rsi
 EXPORT_SYMBOL vmlinux 0x00000000	__xfrm_decode_session
 EXPORT_SYMBOL vmlinux 0x00000000	__xfrm_dst_lookup
 EXPORT_SYMBOL vmlinux 0x00000000	__xfrm_init_state
@@ -7613,6 +7628,7 @@ EXPORT_SYMBOL vmlinux 0x00000000	dev_get_nest_level
 EXPORT_SYMBOL vmlinux 0x00000000	dev_get_phys_port_id
 EXPORT_SYMBOL vmlinux 0x00000000	dev_get_phys_port_name
 EXPORT_SYMBOL vmlinux 0x00000000	dev_get_stats
+EXPORT_SYMBOL vmlinux 0x00000000	dev_get_valid_name
 EXPORT_SYMBOL vmlinux 0x00000000	dev_getbyhwaddr_rcu
 EXPORT_SYMBOL vmlinux 0x00000000	dev_getfirstbyhwtype
 EXPORT_SYMBOL vmlinux 0x00000000	dev_graft_qdisc
@@ -17538,6 +17554,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	__blocking_notifier_call_chain
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__bpf_call_base
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__class_create
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__class_register
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	__clear_rsb
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__clk_determine_rate
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__clk_get_flags
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__clk_get_hw
@@ -17575,6 +17592,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	__efivar_entry_get
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__efivar_entry_iter
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__fat_fs_error
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__fib_lookup
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	__fill_rsb
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__fput_sync
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__free_iova
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	__fsnotify_inode_delete
