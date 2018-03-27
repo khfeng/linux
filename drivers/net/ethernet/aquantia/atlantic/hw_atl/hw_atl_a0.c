@@ -765,23 +765,24 @@ err_exit:
 	return err;
 }
 
-static int hw_atl_a0_hw_interrupt_moderation_set(struct aq_hw_s *self)
+static int hw_atl_a0_hw_interrupt_moderation_set(struct aq_hw_s *self,
+						 bool itr_enabled)
 {
 	unsigned int i = 0U;
-	u32 itr_rx;
 
-	if (self->aq_nic_cfg->itr) {
-		if (self->aq_nic_cfg->itr != AQ_CFG_INTERRUPT_MODERATION_AUTO) {
+	if (itr_enabled && self->aq_nic_cfg->itr) {
+		if (self->aq_nic_cfg->itr != 0xFFFFU) {
 			u32 itr_ = (self->aq_nic_cfg->itr >> 1);
 
 			itr_ = min(AQ_CFG_IRQ_MASK, itr_);
 
-			itr_rx = 0x80000000U | (itr_ << 0x10);
+			PHAL_ATLANTIC_A0->itr_rx = 0x80000000U |
+					(itr_ << 0x10);
 		} else  {
 			u32 n = 0xFFFFU & aq_hw_read_reg(self, 0x00002A00U);
 
 			if (n < self->aq_link_status.mbps) {
-				itr_rx = 0U;
+				PHAL_ATLANTIC_A0->itr_rx = 0U;
 			} else {
 				static unsigned int hw_timers_tbl_[] = {
 					0x01CU, /* 10Gbit */
@@ -796,7 +797,8 @@ static int hw_atl_a0_hw_interrupt_moderation_set(struct aq_hw_s *self)
 					hw_atl_utils_mbps_2_speed_index(
 						self->aq_link_status.mbps);
 
-				itr_rx = 0x80000000U |
+				PHAL_ATLANTIC_A0->itr_rx =
+					0x80000000U |
 					(hw_timers_tbl_[speed_index] << 0x10U);
 			}
 
@@ -804,11 +806,11 @@ static int hw_atl_a0_hw_interrupt_moderation_set(struct aq_hw_s *self)
 			aq_hw_write_reg(self, 0x00002A00U, 0x8D000000U);
 		}
 	} else {
-		itr_rx = 0U;
+		PHAL_ATLANTIC_A0->itr_rx = 0U;
 	}
 
 	for (i = HW_ATL_A0_RINGS_MAX; i--;)
-		reg_irq_thr_set(self, itr_rx, i);
+		reg_irq_thr_set(self, PHAL_ATLANTIC_A0->itr_rx, i);
 
 	return aq_hw_err_from_flags(self);
 }
