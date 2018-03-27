@@ -59,7 +59,12 @@ static int aq_vec_poll(struct napi_struct *napi, int budget)
 			if (ring[AQ_VEC_TX_ID].sw_head !=
 			    ring[AQ_VEC_TX_ID].hw_head) {
 				aq_ring_tx_clean(&ring[AQ_VEC_TX_ID]);
-				aq_ring_update_queue_state(&ring[AQ_VEC_TX_ID]);
+
+				if (aq_ring_avail_dx(&ring[AQ_VEC_TX_ID]) >
+				    AQ_CFG_SKB_FRAGS_MAX) {
+					aq_nic_ndev_queue_start(self->aq_nic,
+						ring[AQ_VEC_TX_ID].idx);
+				}
 				was_tx_cleaned = true;
 			}
 
@@ -358,7 +363,6 @@ void aq_vec_add_stats(struct aq_vec_s *self,
 		stats_tx->packets += tx->packets;
 		stats_tx->bytes += tx->bytes;
 		stats_tx->errors += tx->errors;
-		stats_tx->queue_restarts += tx->queue_restarts;
 	}
 }
 

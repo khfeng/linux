@@ -51,10 +51,6 @@
 
 #define AQ_CFG_SKB_FRAGS_MAX   32U
 
-/* Number of descriptors available in one ring to resume this ring queue
- */
-#define AQ_CFG_RESTART_DESC_THRES   (AQ_CFG_SKB_FRAGS_MAX * 2)
-
 #define AQ_CFG_NAPI_WEIGHT     64U
 
 #define AQ_CFG_MULTICAST_ADDRESS_MAX     32U
