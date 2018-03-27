@@ -115,21 +115,16 @@ struct __packed hw_aq_atl_utils_fw_rpc {
 	};
 };
 
-struct __packed hw_aq_atl_utils_mbox_header {
+struct __packed hw_aq_atl_utils_mbox {
 	u32 version;
 	u32 transaction_id;
-	u32 error;
-};
-
-struct __packed hw_aq_atl_utils_mbox {
-	struct hw_aq_atl_utils_mbox_header header;
+	int error;
 	struct hw_atl_stats_s stats;
 };
 
 struct __packed hw_atl_s {
 	struct aq_hw_s base;
-	struct hw_atl_stats_s last_stats;
-	struct hw_atl_stats_s curr_stats;
+	struct hw_aq_atl_utils_mbox mbox;
 	u64 speed;
 	u32 itr_tx;
 	u32 itr_rx;
@@ -175,9 +170,6 @@ enum hal_atl_utils_fw_state_e {
 
 void hw_atl_utils_hw_chip_features_init(struct aq_hw_s *self, u32 *p);
 
-int hw_atl_utils_mpi_read_mbox(struct aq_hw_s *self,
-			       struct hw_aq_atl_utils_mbox_header *pmbox);
-
 void hw_atl_utils_mpi_read_stats(struct aq_hw_s *self,
 				 struct hw_aq_atl_utils_mbox *pmbox);
 
@@ -206,8 +198,6 @@ int hw_atl_utils_hw_set_power(struct aq_hw_s *self,
 int hw_atl_utils_hw_deinit(struct aq_hw_s *self);
 
 int hw_atl_utils_get_fw_version(struct aq_hw_s *self, u32 *fw_version);
-
-int hw_atl_utils_update_stats(struct aq_hw_s *self);
 
 int hw_atl_utils_get_hw_stats(struct aq_hw_s *self,
 			      u64 *data,
