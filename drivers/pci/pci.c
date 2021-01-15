@@ -29,6 +29,7 @@
 #include <linux/pm_runtime.h>
 #include <linux/pci_hotplug.h>
 #include <linux/vmalloc.h>
+#include <linux/suspend.h>
 #include <asm/dma.h>
 #include <linux/aer.h>
 #include "pci.h"
@@ -1685,7 +1686,9 @@ void pci_restore_state(struct pci_dev *dev)
 	pci_restore_msi_state(dev);
 
 	/* Restore ACS and IOV configuration state */
-	pci_enable_acs(dev);
+	if (!(dev->dev_flags & PCI_DEV_FLAGS_NO_ACS_S3 &&
+	    pm_resume_via_firmware()))
+		pci_enable_acs(dev);
 	pci_restore_iov_state(dev);
 
 	dev->state_saved = false;

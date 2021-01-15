@@ -229,6 +229,8 @@ enum pci_dev_flags {
 	PCI_DEV_FLAGS_NO_RELAXED_ORDERING = (__force pci_dev_flags_t) (1 << 11),
 	/* Enable ASPM regardless of how LnkCtl is programmed */
 	PCI_DEV_FLAGS_ENABLE_ASPM = (__force pci_dev_flags_t) (1 << 12),
+	/* Don't enable ACS after S3 */
+	PCI_DEV_FLAGS_NO_ACS_S3 = (__force pci_dev_flags_t) (1 << 13),
 };
 
 enum pci_irq_reroute_variant {

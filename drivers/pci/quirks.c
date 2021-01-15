@@ -5702,3 +5702,28 @@ static void pci_fixup_enable_vmd_nvme_ltr(struct pci_dev *pdev)
 }
 DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_ANY_ID, PCI_ANY_ID,
 			      PCI_CLASS_STORAGE_EXPRESS, 0, pci_fixup_enable_vmd_nvme_ltr);
+
+static void pci_fixup_no_acs_s3(struct pci_dev *pdev)
+{
+	struct pci_dev *parent;
+
+	parent = pci_upstream_bridge(pdev);
+	if (!parent)
+		return;
+
+	if (parent->vendor != PCI_VENDOR_ID_INTEL)
+		return;
+
+	switch (parent->device) {
+	case 0x06ac ... 0x06c3: /* PCH400 for Comet Lake */
+	case 0x43b0 ... 0x43c7: /* PCH500 for Rocket Lake and Tiger Lake */
+		break;
+	default:
+		return;
+	}
+
+	parent->dev_flags |= PCI_DEV_FLAGS_NO_ACS_S3;
+
+}
+DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
+			      PCI_CLASS_STORAGE_EXPRESS, 0, pci_fixup_no_acs_s3);
