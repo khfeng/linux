@@ -10489,7 +10489,7 @@ CONFIG_SONY_LAPTOP                              policy<{'amd64': 'm'}>
 CONFIG_SONYPI_COMPAT                            policy<{'amd64': 'y'}>
 CONFIG_SYSTEM76_ACPI                            policy<{'amd64': 'm'}>
 CONFIG_TOPSTAR_LAPTOP                           policy<{'amd64': 'm'}>
-CONFIG_I2C_MULTI_INSTANTIATE                    policy<{'amd64': 'm'}>
+CONFIG_SERIAL_MULTI_INSTANTIATE			policy<{'amd64': 'm'}>
 CONFIG_MLX_PLATFORM                             policy<{'amd64': 'm'}>
 CONFIG_TOUCHSCREEN_DMI                          policy<{'amd64': 'y'}>
 CONFIG_INTEL_IPS                                policy<{'amd64': 'm'}>
