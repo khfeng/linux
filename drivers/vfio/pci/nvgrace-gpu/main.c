@@ -1076,7 +1076,10 @@ static int nvgrace_gpu_probe(struct pci_dev *pdev,
 		}
 
 		if (egm_enabled) {
-			register_egm_node(pdev);
+			ret = register_egm_node(pdev);
+			if (ret)
+				goto out_put_vdev;
+
 			nvdev->egm_node = egmpxm;
 		}
 
@@ -1084,7 +1087,7 @@ static int nvgrace_gpu_probe(struct pci_dev *pdev,
 
 	ret = vfio_pci_core_register_device(&nvdev->core_device);
 	if (ret)
-		goto out_put_vdev;
+		goto out_egm_unreg;
 
 #ifdef CONFIG_MEMORY_FAILURE
 	/*
@@ -1096,6 +1099,9 @@ static int nvgrace_gpu_probe(struct pci_dev *pdev,
 
 	return ret;
 
+out_egm_unreg:
+	if (egm_enabled)
+		unregister_egm_node(nvdev->egm_node);
 out_put_vdev:
 	vfio_put_device(&nvdev->core_device.vdev);
 	return ret;
